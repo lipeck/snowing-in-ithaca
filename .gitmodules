@@ -1,0 +1,3 @@
+[submodule "noaa_api_v2"]
+	path = noaa_api_v2
+	url = https://github.com/crvaden/NOAA_API_v2
