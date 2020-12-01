@@ -25,10 +25,19 @@ json_str = json.dumps(status._json)
 parsed = json.loads(json_str)
 data = json.dumps(parsed)
 
+#prints tweet json
 # print(json.dumps(parsed, indent = 4, sort_keys = True))
 
-#tweet reply id
-print(parsed["id_str"])
+#prints tweet reply id
+# print(parsed["id_str"])
 
-# reply to tweet
-# api.update_status('@snowinginithaca tweet', in_reply_to_status_id = '1332819373002813446')
+tweet_id = parsed['id_str']
+fav = parsed['favorited']
+
+#check if tweet has already been replied to, terminate if so
+#fav after a reply to mark
+if fav == True:
+	exit()
+else:
+	api.update_status('@snowinginithaca tweet', in_reply_to_status_id = tweet_id)
+	api.create_favorite(tweet_id)
