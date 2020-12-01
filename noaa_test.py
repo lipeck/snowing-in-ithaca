@@ -7,12 +7,12 @@ with open('keys.json') as f:
 api_token = keys[0]['noaa_api']
 
 from noaa.noaa_api_v2 import NOAAData
-
 data = NOAAData(api_token)
 
-weather_data = data.fetch_data(datasetid='GHCND', locationid='ZIP:14850', startdate='2020-01-01', enddate='2020-01-02')
+test_date = '2013-12-20'
 
-# for i in categories:
-#     print(i)
+#returns weather data
+weather_data = data.fetch_data(stationid='GHCND:USC00304174', datasetid='GHCND', startdate='2013-12-10', enddate=test_date, datatypeid='SNOW', units='standard')
 
+#prints snowing station data
 print(json.dumps(weather_data, indent = 4, sort_keys = True))
