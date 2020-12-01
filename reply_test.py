@@ -14,14 +14,21 @@ auth.set_access_token(access_token, access_token_secret)
 
 api = tweepy.API(auth)
 
-#gets @snowing in ithaca most recent tweets
+#gets @snowinginithaca most recent tweets
 
 status = api.user_timeline(id = 'snowinginithaca', count = 1)[0]
 
-
-#tweepy parser with help from https://towardsdatascience.com/tweepy-for-beginners-24baf21f2c25
+#tweepy parser with help from:
+#https://towardsdatascience.com/tweepy-for-beginners-24baf21f2c25
 
 json_str = json.dumps(status._json)
 parsed = json.loads(json_str)
+data = json.dumps(parsed)
 
-print(json.dumps(parsed, indent=4, sort_keys=True))
+# print(json.dumps(parsed, indent = 4, sort_keys = True))
+
+#tweet reply id
+print(parsed["id_str"])
+
+# reply to tweet
+# api.update_status('@snowinginithaca tweet', in_reply_to_status_id = '1332819373002813446')
