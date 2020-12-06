@@ -4,6 +4,7 @@ import requests #pip (incl in tweepy)
 # from datetime import date #for todays date
 import datetime
 import pytz #pip #for timezones
+from noaa.noaa_api_v2 import NOAAData
 
 with open('keys.json') as f:
 	keys = json.load(f)
@@ -23,8 +24,7 @@ api = tweepy.API(auth)
 
 status = api.user_timeline(id = 'snowinginithaca', count = 1)[0]
 
-#tweepy parser with help from:
-#https://towardsdatascience.com/tweepy-for-beginners-24baf21f2c25
+#tweepy parser with help from: https://towardsdatascience.com/tweepy-for-beginners-24baf21f2c25
 
 json_str = json.dumps(status._json)
 parsed = json.loads(json_str)
@@ -33,45 +33,33 @@ data = json.dumps(parsed)
 #prints tweet in readable format
 # print(json.dumps(parsed, indent = 4, sort_keys = True))
 
-#prints tweet reply id
-# print(parsed["id_str"])
-
-# tweet_id = parsed['id_str']
-# fav = parsed['favorited']
-
+tweet_id = parsed['id_str']
+fav = parsed['favorited']
 tweet_date = parsed['created_at']
 
-#reformats tweet date
+# check if tweet has already been replied to, terminate script if so
+if fav == True:
+	exit()
+
+#reformats tweet date to ISO & changes timezone from UTC to eastern
 date_iso = datetime.datetime.strptime(tweet_date, '%a %b %d %H:%M:%S %z %Y')
-
-#isolates year etc
-# print(date_iso.strftime('%Y'))
-
 date_iso_est = date_iso.astimezone(pytz.timezone('America/New_York'))
 
-print(date_iso_est)
+#isolate date
+date_clean = date_iso_est.strftime('%Y-%m-%d')
 
+print(date_clean)
 
-print('tweet date - ' + str(tweet_date))
-print('date iso - ' + str(date_iso_est))
+data = NOAAData(api_token)
 
-#check if tweet has already been replied to, terminate if so
-#fav after a reply to mark
+#returns snowfall data for date of last tweet
+weather_data = data.fetch_data(stationid='GHCND:USC00304174', datasetid='GHCND', startdate=date_clean, enddate=date_clean, datatypeid='SNOW', units='standard')
 
-# if fav == True:
-# 	exit()
-# else:
+#prints data
+print(json.dumps(weather_data, indent = 4, sort_keys = True))
+
+# #fave tweet after a reply to mark
 # 	api.update_status('@snowinginithaca tweet', in_reply_to_status_id = tweet_id)
 # 	api.create_favorite(tweet_id)
 
 
-# from noaa.noaa_api_v2 import NOAAData
-# data = NOAAData(api_token)
-
-# test_date = '2013-12-20'
-
-# #returns weather data
-# weather_data = data.fetch_data(stationid='GHCND:USC00304174', datasetid='GHCND', startdate=test_date, enddate=test_date, datatypeid='SNOW', units='standard')
-
-# #prints snowing station data
-# print(json.dumps(weather_data, indent = 4, sort_keys = True))
