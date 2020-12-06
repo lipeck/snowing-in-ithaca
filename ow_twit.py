@@ -27,7 +27,9 @@ for current in weather:
 
 if condition == 'Snow':
 	api.update_status('yes')
-else:
+elif condition == 'Clear':
 	api.update_status('no')
+else:
+	exit()
 
-	# print(condition)
+# print(condition)
