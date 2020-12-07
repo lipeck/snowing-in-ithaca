@@ -1,6 +1,6 @@
 # @snowinginithaca & @snowedinithaca
 
-##About
+## About
 
 Two companion Twitter bots, [@snowinginithaca](https://twitter.com/snowinginithaca) & [@snowedinithaca](https://twitter.com/snowedinithaca) both analyze weather patterns in Ithaca, NY. 
 
@@ -12,7 +12,7 @@ NOAA data is sourced from [Cornell University's weather station](https://www.ncd
 
 These bots are part of a coursework for Pratt School of Information INFO 664.
 
-##Directory
+## Directory
 
 * ow_twit.py
 	* this is the script that runs Snowing in Ithaca
@@ -21,7 +21,7 @@ These bots are part of a coursework for Pratt School of Information INFO 664.
 * test-and-setup
 	* this folder contains sections of code that were later combined
 
-##Requirements
+## Requirements
 
 Installing dependencies:
 
