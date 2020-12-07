@@ -13,20 +13,33 @@ data = NOAAData(api_token)
 
 test_date = '2013-12-20'
 
-
 #subtracts one year from date
 date_clean = datetime.datetime.strptime(test_date, '%Y-%m-%d').date()
 last_year = date_clean - relativedelta(years=1)
 
-# print(last_year)
-
 #returns weather data
 weather_data = data.fetch_data(stationid='GHCND:USC00304174', datasetid='GHCND', startdate=last_year, enddate=last_year, datatypeid='SNOW', units='standard')
 
-# #prints snowing station data
-# # print(json.dumps(weather_data, indent = 4, sort_keys = True))
+#prints snowfall data for date
+# print(json.dumps(weather_data, indent = 4, sort_keys = True))
 
-#isolates snowfall data
+#isolates snowfall value & date
 snowfall = weather_data[0]['value']
+noaa_date = weather_data[0]['date']
 
-print(snowfall)
+#sets variable for while loop
+x = 0
+
+while float(snowfall) == 0:
+
+	if float(snowfall) > 0:
+		break
+		print('it snowed ' + snowfall + ' ' + noaa_date)
+	if float(snowfall) == 0:
+		x = x+1
+		print(x)
+		back = last_year - relativedelta(years=int(x))
+		weather_data = data.fetch_data(stationid='GHCND:USC00304174', datasetid='GHCND', startdate=back, enddate=back, datatypeid='SNOW', units='standard')
+		snowfall = weather_data[0]['value']
+		noaa_date = weather_data[0]['date']
+		print('it didn`t ' + str(snowfall) + ' ' + noaa_date)
