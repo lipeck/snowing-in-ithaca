@@ -30,4 +30,4 @@ if condition == 'Snow':
 elif condition == 'Clear':
 	api.update_status('no')
 
-print(condition)
+# print(condition)
