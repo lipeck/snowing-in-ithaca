@@ -8,7 +8,7 @@ Snowing in Ithaca is a small passion project, started in 2014, when I collected 
 
 Snowed in Ithaca is a new bot that replies to its companion with the last year it snowed on a given date. Snowed in Ithaca calls on the [NOAA Web Services v2 API](https://www.ncdc.noaa.gov/cdo-web/webservices/v2#gettingStarted) alongside @crvaden 's [NOAA API module](https://github.com/crvaden/NOAA_API_v2) and also tweets with Tweepy. This bot also uses [pytz](https://pypi.org/project/pytz/) and [dateutil](https://dateutil.readthedocs.io/en/stable/) to navigate timezones and dates.
 
-NOAA data is sourced from [Cornell University's weather station](https://www.ncdc.noaa.gov/cdo-web/datasets/GHCND/stations/GHCND:USC00304174/detail), with local weather data from 1983-present. Snowed in Ithaca only replies if more than half an inch of snow was recorded.
+NOAA data is sourced from [Cornell University's weather station](https://www.ncdc.noaa.gov/cdo-web/datasets/GHCND/stations/GHCND:USC00304174/detail), with local weather data from 1893-present. Snowed in Ithaca only replies if more than half an inch of snow was recorded.
 
 These bots are part of coursework for Pratt School of Information INFO 664.
 
