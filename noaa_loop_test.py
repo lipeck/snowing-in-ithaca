@@ -12,21 +12,21 @@ api_token = keys[0]['noaa_api']
 from noaa.noaa_api_v2 import NOAAData
 data = NOAAData(api_token)
 
-test_date = '2020-02-24'
+date_clean = '2020-01-24'
 
 #subtracts one year from date
-date_clean = datetime.datetime.strptime(test_date, '%Y-%m-%d').date()
-last_year = date_clean - relativedelta(years=1)
+noaa_date = datetime.datetime.strptime(date_clean, '%Y-%m-%d').date()
+last_year = noaa_date - relativedelta(years=1)
 
-#returns weather data
+#returns snowfall data for date
 weather_data = data.fetch_data(stationid='GHCND:USC00304174', datasetid='GHCND', startdate=last_year, enddate=last_year, datatypeid='SNOW', units='standard')
 
 #prints snowfall data for date
 # print(json.dumps(weather_data, indent = 4, sort_keys = True))
 
-#isolates snowfall value & date
+#isolate snowfall value & date
 snowfall = weather_data[0]['value']
-noaa_date = weather_data[0]['date']
+# noaa_date = weather_data[0]['date']
 
 #sets variable for while loop
 x = 0
