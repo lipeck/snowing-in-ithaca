@@ -26,7 +26,7 @@ weather_data = data.fetch_data(stationid='GHCND:USC00304174', datasetid='GHCND',
 
 #isolate snowfall value & date
 snowfall = weather_data[0]['value']
-# noaa_date = weather_data[0]['date']
+noaa_date = weather_data[0]['date']
 
 #sets variable for while loop
 x = 0
