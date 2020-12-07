@@ -10,7 +10,7 @@ Snowed in Ithaca is a new bot that replies to its companion with the last year i
 
 NOAA data is sourced from [Cornell University's weather station](https://www.ncdc.noaa.gov/cdo-web/datasets/GHCND/stations/GHCND:USC00304174/detail), with local weather data from 1983-present. Snowed in Ithaca only replies if more than half an inch of snow was recorded.
 
-These bots are part of a coursework for Pratt School of Information INFO 664.
+These bots are part of coursework for Pratt School of Information INFO 664.
 
 ## Directory
 
