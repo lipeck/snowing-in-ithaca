@@ -1,6 +1,7 @@
 # ! most important !
 keys.json
 .DS_Store
+/aws
 
 
 # Byte-compiled / optimized / DLL files
