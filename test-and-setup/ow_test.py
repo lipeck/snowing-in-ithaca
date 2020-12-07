@@ -1,7 +1,7 @@
 import requests
 import json
 
-with open('keys.json') as f:
+with open('../keys.json') as f:
 	keys = json.load(f)
 
 url = keys[0]['ow_api']

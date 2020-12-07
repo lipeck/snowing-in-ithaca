@@ -1,7 +1,7 @@
 import tweepy
 import json
 
-with open('keys.json') as f:
+with open('../keys.json') as f:
 	keys = json.load(f)
 
 consumer_key = keys[0]['twit_api']

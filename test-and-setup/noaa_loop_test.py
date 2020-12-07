@@ -4,7 +4,7 @@ import datetime
 from dateutil.relativedelta import relativedelta
 import time
 
-with open('keys.json') as f:
+with open('../keys.json') as f:
 	keys = json.load(f)
 
 api_token = keys[0]['noaa_api']
