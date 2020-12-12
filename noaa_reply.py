@@ -1,10 +1,10 @@
-import tweepy #pip
+import tweepy
 import json
-import requests #pip (incl in tweepy)
+import requests
 import datetime
-import pytz #pip #for timezones
-from noaa.noaa_api_v2 import NOAAData #local folder
-from dateutil.relativedelta import relativedelta #pip
+import pytz #for timezones
+from noaa.noaa_api_v2 import NOAAData
+from dateutil.relativedelta import relativedelta
 import time
 
 with open('keys.json') as f:
@@ -67,27 +67,35 @@ noaa_date = weather_data[0]['date']
 noaa_year = last_year.strftime('%Y')
 noaa_day = last_year.strftime('%B %-d')
 
+#tweet if it snowed on this date last year
 if float(snowfall) >= 0.5:
-	# print('on this date it last snowed ' + str(snowfall) + '" in ' + noaa_year)
 	api.update_status('@snowinginithaca the last time it snowed on ' + noaa_day + ', it snowed ' + str(snowfall) + '" in ' + noaa_year + '!', in_reply_to_status_id = tweet_id)
 	api.create_favorite(tweet_id)
 
-#set variable for while loop
+#set variable for year variable in while loop api call
 x = 0
 
-#fave tweet after a reply to mark
+#loops through historical snowfall data to find snowfall on date
 while float(snowfall) < 0.5:
+		#add 1 to year variable
 		x = x+1
-		print(x)
+		# print(x)
+		#create variable to subtract 1 year
 		back = last_year - relativedelta(years=int(x))
+		#call api but subtract 1 year
 		weather_data = data.fetch_data(stationid='GHCND:USC00304174', datasetid='GHCND', startdate=back, enddate=back, datatypeid='SNOW', units='standard')
+		#isolate snowfall value & dates from data
 		snowfall = weather_data[0]['value']
 		noaa_date = weather_data[0]['date']
-		time.sleep(1)
+		#slow down the api!!!
+		time.sleep(.5)
 		if float(snowfall) >= 0.5:
+			#parse date for tweet language
 			noaa_year = back.strftime('%Y')
 			noaa_day = back.strftime('%B %-d')
 			# print()
+			#update status
 			api.update_status('@snowinginithaca the last time it snowed on ' + noaa_day + ', it snowed ' + str(snowfall) + '" in ' + noaa_year + '!', in_reply_to_status_id = tweet_id)
+			#fave tweet after reply
 			api.create_favorite(tweet_id)
 			break

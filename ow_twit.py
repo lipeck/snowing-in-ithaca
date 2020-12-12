@@ -16,15 +16,18 @@ auth.set_access_token(access_token, access_token_secret)
 
 api = tweepy.API(auth)
 
+#get weather data
 r = requests.get(url)
-
 data = r.json()
 
+#isolate weather data
 weather = data['weather']
 
+#isolate current condition
 for current in weather:
     condition = current['main']
 
+#tweet if snowing
 if condition == 'Snow':
 	api.update_status('yes')
 elif condition == 'Clear':
