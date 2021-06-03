@@ -57,7 +57,7 @@ data = NOAAData(api_token)
 weather_data = data.fetch_data(stationid='GHCND:USC00304174', datasetid='GHCND', startdate=last_year, enddate=last_year, datatypeid='SNOW', units='standard')
 
 #print snowfall data for last year
-print(json.dumps(weather_data, indent = 4, sort_keys = True))
+# print(json.dumps(weather_data, indent = 4, sort_keys = True))
 
 #isolate snowfall value & dates
 snowfall = weather_data[0]['value']
@@ -69,7 +69,7 @@ noaa_day = last_year.strftime('%B %-d')
 
 #tweet if it snowed on this date last year
 if float(snowfall) >= 0.5:
-	api.update_status('@snowinginithaca the last time it snowed on ' + noaa_day + ', it snowed ' + str(snowfall) + '" in ' + noaa_year + '!', in_reply_to_status_id = tweet_id)
+	api.update_status(f"@snowinginithaca the last time it snowed on {noaa_day}, it snowed {str(snowfall)}' in {noaa_year}!", in_reply_to_status_id = tweet_id)
 	api.create_favorite(tweet_id)
 
 #set variable for year variable in while loop api call
@@ -95,7 +95,7 @@ while float(snowfall) < 0.5:
 			noaa_day = back.strftime('%B %-d')
 			# print()
 			#update status
-			api.update_status('@snowinginithaca the last time it snowed on ' + noaa_day + ', it snowed ' + str(snowfall) + '" in ' + noaa_year + '!', in_reply_to_status_id = tweet_id)
+			api.update_status(f"@snowinginithaca the last time it snowed on {noaa_day}, it snowed {str(snowfall)}' in {noaa_year}!", in_reply_to_status_id = tweet_id)
 			#fave tweet after reply
 			api.create_favorite(tweet_id)
 			break
