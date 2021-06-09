@@ -36,6 +36,14 @@ data = json.dumps(parsed)
 tweet_id = parsed['id_str']
 fav = parsed['favorited']
 tweet_date = parsed['created_at']
+retweet = parsed['retweeted']
+reply = parsed['in_reply_to_screen_name']
+
+# check if tweet is retweet or reply, terminate script if so
+if retweet == True:
+	exit()
+if reply != 'null':
+	exit()
 
 # check if tweet has already been replied to, terminate script if so
 if fav == True:
