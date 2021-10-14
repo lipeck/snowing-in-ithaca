@@ -1,0 +1,4 @@
+tweepy
+pytz
+python-dateutil
+git+git://github.com/crvaden/NOAA_API_v2#egg=NOAA_API_v2
