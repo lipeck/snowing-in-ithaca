@@ -109,5 +109,5 @@ if last != int(big_blizzard[:4]) and lastsnow > 0 and maxsnowfall > 0:
 	blizzard_day = blizzard.strftime('%B %-d')
 
 	# tweet & fav
-	api.update_status(f'@snowinginithaca the last time it snowed in Ithaca on {blizzard_day}, it snowed {lastsnow}\" in {last}! the most snow ever recorded in Ithaca on {blizzard_day} is {maxsnowfall}\" in {blizzard_year}!', in_reply_to_status_id = tweet_id)
+	api.update_status(f'@snowinginithaca the last time it snowed in Ithaca on {blizzard_day}, it snowed {lastsnow}\" in {last}. the most snow recorded on this day is {maxsnowfall}\" in {blizzard_year}!', in_reply_to_status_id = tweet_id)
 	api.create_favorite(tweet_id)
