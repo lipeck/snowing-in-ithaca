@@ -110,7 +110,7 @@ if last == int(big_blizzard[:4]):
 	api.update_status(f'@snowinginithaca the last time it snowed in Ithaca on {blizzard_day}, it snowed {lastsnow}" in {blizzard_year}! that\'s the most recorded snowfall!', in_reply_to_status_id = tweet_id)
 	api.create_favorite(tweet_id)
 
-	print(f'@snowinginithaca the last time it snowed in Ithaca on {blizzard_day}, it snowed {lastsnow}" in {blizzard_year}! that\'s the most recorded snowfall!')
+	# print(f'@snowinginithaca the last time it snowed in Ithaca on {blizzard_day}, it snowed {lastsnow}" in {blizzard_year}! that\'s the most recorded snowfall!')
 
 if last != int(big_blizzard[:4]) and lastsnow > 0 and maxsnowfall > 0:
 
