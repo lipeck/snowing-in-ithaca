@@ -1,5 +1,7 @@
 # @snowinginithaca & @snowedinithaca
 
+*note: these twitter bots have ceased operation due to the end of free Twitter API access.*
+
 ## About
 
 Two companion Twitter bots, [@snowinginithaca](https://twitter.com/snowinginithaca) & [@snowedinithaca](https://twitter.com/snowedinithaca) report on snow patterns in Ithaca, NY.
