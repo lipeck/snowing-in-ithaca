@@ -59,7 +59,8 @@ date_clean = date_iso_est.strftime('%Y-%m-%d')
 date_csv = date_iso_est.strftime('-%m-%d')
 
 # setting variables for loops
-last, lastsnow, maxsnowfall, big_blizzard = 0, 0, 0, ''
+last = lastsnow = maxsnowfall = 0
+big_blizzard = ''
 
 # reads weather data on csv
 with open('snowfall.csv', 'r') as f:
@@ -69,7 +70,7 @@ with open('snowfall.csv', 'r') as f:
 
 		# check dates & convert snowfall values to integers
 		date_col = row['DATE']
-		snow = int(float(row['SNOW']))
+		snow = float(row['SNOW'])
 
 		# checks for blizzard
 		if date_csv in date_col:
@@ -88,6 +89,14 @@ with open('snowfall.csv', 'r') as f:
 
 		else: continue
 
+# round whole numbers
+if lastsnow.is_integer() == True:
+	lastsnow = int(lastsnow)
+
+if maxsnowfall.is_integer() == True:
+	print(maxsnowfall)
+	maxsnowfall = int(maxsnowfall)
+
 if last == 0: exit()
 			
 if last == int(big_blizzard[:4]):
@@ -101,6 +110,8 @@ if last == int(big_blizzard[:4]):
 	api.update_status(f'@snowinginithaca the last time it snowed in Ithaca on {blizzard_day}, it snowed {lastsnow}" in {blizzard_year}! that\'s the most recorded snowfall!', in_reply_to_status_id = tweet_id)
 	api.create_favorite(tweet_id)
 
+	# print(f'@snowinginithaca the last time it snowed in Ithaca on {blizzard_day}, it snowed {lastsnow}" in {blizzard_year}! that\'s the most recorded snowfall!')
+
 if last != int(big_blizzard[:4]) and lastsnow > 0 and maxsnowfall > 0:
 
 	# isolate year for tweet & separate out date info
@@ -111,3 +122,5 @@ if last != int(big_blizzard[:4]) and lastsnow > 0 and maxsnowfall > 0:
 	# tweet & fav
 	api.update_status(f'@snowinginithaca the last time it snowed in Ithaca on {blizzard_day}, it snowed {lastsnow}\" in {last}. the most snow recorded on this day is {maxsnowfall}\" in {blizzard_year}!', in_reply_to_status_id = tweet_id)
 	api.create_favorite(tweet_id)
+
+	# print(f'@snowinginithaca the last time it snowed in Ithaca on {blizzard_day}, it snowed {lastsnow}\" in {last}. the most snow recorded on this day is {maxsnowfall}\" in {blizzard_year}!')
